@@ -13,20 +13,28 @@ def main():
 
 
 def init_path():
-    train_image_dir = 'E:/Dataset/Dataset10k/images/training/'
-    val_image_dir = 'E:/Dataset/Dataset10k/images/validation/'
-    train_label_dir = 'E:/Dataset/Dataset10k/annotations/training/'
-    val_label_dir = 'E:/Dataset/Dataset10k/annotations/validation/'
-
-    train_image_paths = []
-    val_image_paths = []
-    train_label_paths = []
-    val_label_paths = []
+    train_image_dir = 'E:/Dataset/LIP/train_images/'
+    val_image_dir = 'E:/Dataset/LIP/val_images/'
+    train_label_dir = 'E:/Dataset/LIP/train_segmentations/'
+    val_label_dir = 'E:/Dataset/LIP/val_segmentations/'
 
     train_image_file_names = os.listdir(train_image_dir)
     train_label_file_names = os.listdir(train_label_dir)
     val_image_file_names = os.listdir(val_image_dir)
     val_label_file_names = os.listdir(val_label_dir)
+
+    with open('E:/Dataset/LIP/list/train_id.txt', 'w') as file:
+        for id in train_image_file_names:
+            file.write("%s\n" % id[:-4])
+
+    with open('E:/Dataset/LIP/list/val_id.txt', 'w') as file:
+        for id in val_image_file_names:
+            file.write("%s\n" % id[:-4])
+
+    train_image_paths = []
+    val_image_paths = []
+    train_label_paths = []
+    val_label_paths = []
 
     for file_name in tqdm(train_image_file_names):
         train_image_paths.append(os.path.join(train_image_dir, file_name))
@@ -39,6 +47,14 @@ def init_path():
 
     for file_name in tqdm(val_label_file_names):
         val_label_paths.append(os.path.join(val_label_dir, file_name))
+
+    with open('E:/Dataset/LIP/list/train.txt', 'w') as file:
+        for id in train_image_paths:
+            file.write("%s\n" % id)
+
+    with open('E:/Dataset/LIP/list/val.txt', 'w') as file:
+        for id in val_image_paths:
+            file.write("%s\n" % id)
 
     return train_image_paths, train_label_paths, val_image_paths, val_label_paths
 
@@ -72,8 +88,10 @@ def compute_hist(images, labels):
 
 def show_result(hist):
 
-    classes = ['background', 'hat', 'hair', 'sunglasses', 'upperclothes', 'skirt', 'pants', 'dress',
-               'belt', 'leftShoe', 'rightShoe', 'face', 'leftLeg', 'rightLeg', 'leftArm', 'rightArm', 'bag', 'scarf']
+    classes = ['background', 'hat', 'hair', 'glove', 'sunglasses', 'upperclothes',
+               'dress', 'coat', 'socks', 'pants', 'jumpsuits', 'scarf', 'skirt',
+               'face', 'leftArm', 'rightArm', 'leftLeg', 'rightLeg', 'leftShoe',
+               'rightShoe']
     # num of correct pixels
     num_cor_pix = np.diag(hist)
     # num of gt pixels
