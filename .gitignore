@@ -2,3 +2,8 @@
 *.solverstate
 *.o
 *.pyc
+
+human/log/
+human/data/
+human/model/
+human/features/

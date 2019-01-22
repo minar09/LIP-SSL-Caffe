@@ -8,6 +8,7 @@ CAFFE_DIR=D:/Python/Anaconda/envs/caffe/Library/bin
 #CAFFE_BIN=D:/Python/Anaconda/envs/caffe/Library/bin/caffe.exe
 CAFFE_BIN=caffe
 
+# directory variable
 EXP=human
 
 if [ "${EXP}" = "human" ]; then
@@ -61,7 +62,8 @@ if [ ${RUN_TRAIN} -eq 1 ]; then
                 comm -3 ${LIST_DIR}/${TRAIN_SET}.txt ${LIST_DIR}/${TRAIN_SET_STRONG}.txt | head -n ${TRAIN_SET_WEAK_LEN} > ${LIST_DIR}/${TRAIN_SET_WEAK}.txt
     fi
     #
-    MODEL=${EXP}/model/${NET_ID}/init.caffemodel
+    #MODEL=${EXP}/model/${NET_ID}/init.caffemodel
+    MODEL=${EXP}/model/${NET_ID}/attention+ssl.caffemodel
     #
     echo Training net ${EXP}/${NET_ID}
     for pname in train solver; do
@@ -84,7 +86,7 @@ if [ ${RUN_TEST} -eq 1 ]; then
     for TEST_SET in val; do
                 TEST_ITER=`cat ${EXP}/list/${TEST_SET}.txt | wc -l`
                 #MODEL=${EXP}/model/${NET_ID}/test.caffemodel
-                MODEL=${EXP}/model/${NET_ID}/attention+ssl.caffemodel
+                MODEL=${MODEL_DIR}/attention+ssl.caffemodel
                 if [ ! -f ${MODEL} ]; then
                         MODEL=`ls -t ${EXP}/model/${NET_ID}/train_iter_*.caffemodel | head -n 1`
                 fi

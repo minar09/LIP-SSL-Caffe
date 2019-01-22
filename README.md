@@ -48,3 +48,6 @@ We have released our trained models with best performance at [google drive](http
 6. The prototxt files for network config are saved in ssl/human/config
 7. In run_human.sh, you can set the value of RUN_TRAIN adn RUN_TEST to train or test the model.
 8. After you run TEST, the computed features will be saved in ssl/human/features. You can run the provided MATLAB script, show.m to generate visualizable results. Then you can run the Python script, test_human.py to evaluate the performance.
+
+### Caffe commands
+```caffe test -model human\config\attention\test.prototxt -weights "human\model\attention\attention+ssl.caffemodel" -gpu 0 -iterations 100```
