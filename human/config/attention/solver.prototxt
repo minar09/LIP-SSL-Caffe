@@ -1,4 +1,5 @@
-train_net: "${EXP}/config/${NET_ID}/train_${TRAIN_SET}.prototxt"
+#train_net: "${EXP}/config/${NET_ID}/train_${TRAIN_SET}.prototxt"
+train_net: "human/config/attention/train_train.prototxt"
 
 iter_size: 2
 lr_policy: "step"
@@ -12,5 +13,6 @@ momentum: 0.9
 weight_decay: 0.0005
 
 snapshot: 1000
-snapshot_prefix: "${EXP}/model/${NET_ID}/train"
+#snapshot_prefix: "${EXP}/model/${NET_ID}/train"
+snapshot_prefix: "human/model/attention/train"
 solver_mode: GPU

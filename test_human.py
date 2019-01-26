@@ -13,10 +13,10 @@ def main():
 
 
 def init_path():
-    train_image_dir = 'E:/Dataset/LIP/train_images/'
-    val_image_dir = 'E:/Dataset/LIP/val_images/'
-    train_label_dir = 'E:/Dataset/LIP/train_segmentations/'
-    val_label_dir = 'E:/Dataset/LIP/val_segmentations/'
+    train_image_dir = 'E:/Dataset/LIP/training/images/'
+    val_image_dir = 'E:/Dataset/LIP/validation/images/'
+    train_label_dir = 'E:/Dataset/LIP/training/labels/'
+    val_label_dir = 'E:/Dataset/LIP/validation/labels/'
 
     train_image_file_names = os.listdir(train_image_dir)
     train_label_file_names = os.listdir(train_label_dir)
